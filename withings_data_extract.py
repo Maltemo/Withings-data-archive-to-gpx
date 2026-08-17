@@ -83,10 +83,13 @@ def extract_data_from_csv_file(file_path):
     """
     with open(file_path, "r") as data_file:
         csv_data = DictReader(data_file)
-        return [
-            (datetime.fromisoformat(data['start']), data['value'].strip('[]'))
-            for data in csv_data
-        ]
+        return sorted(
+            (
+                (datetime.fromisoformat(data['start']), data['value'].strip('[]'))
+                for data in csv_data
+            ),
+            key=lambda item: item[0]
+        )
     
     
 def get_parsed_args():
