@@ -57,7 +57,7 @@ def generate_gpx_xml(activity_name, data):
     head = (
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
         "<gpx creator=\"StravaGPX\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd\" version=\"1.1\" xmlns=\"http://www.topografix.com/GPX/1/1\" xmlns:gpxtpx=\"http://www.garmin.com/xmlschemas/TrackPointExtension/v1\" xmlns:gpxx=\"http://www.garmin.com/xmlschemas/GpxExtensions/v3\">"
-        f"<metadata><time>{data[0][0].strftime('%Y-%m-%dT%H:%M:%SZ')}</time></metadata>"
+        f"<metadata><time>{data[0][0].strftime('%Y-%m-%dT%H:%M:%S%z')}</time></metadata>"
         f"<trk><name>{activity_name}</name><type>1</type>"
     )
 
@@ -65,7 +65,7 @@ def generate_gpx_xml(activity_name, data):
     for _date, _long, _lat, _alt in data:
         tracking_data += (
             f"<trkpt lat=\"{_lat}\" lon=\"{_long}\"><ele>{_alt}</ele>"
-            f"<time>{_date.strftime('%Y-%m-%dT%H:%M:%SZ')}</time>"
+            f"<time>{_date.strftime('%Y-%m-%dT%H:%M:%S%z')}</time>"
             "</trkpt>"
         )
     tracking_data += "</trkseg>"
